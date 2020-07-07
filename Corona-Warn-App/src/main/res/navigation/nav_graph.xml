@@ -177,6 +177,9 @@
         <action
             android:id="@+id/action_riskDetailsFragment_to_settingsTracingFragment"
             app:destination="@id/settingsTracingFragment" />
+        <action
+            android:id="@+id/action_riskDetailsFragment_to_furtherRiskDetailsFragment"
+            app:destination="@id/furtherRiskDetailsFragment"/>
     </fragment>
 
     <fragment

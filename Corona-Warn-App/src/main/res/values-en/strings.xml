@@ -1004,5 +1004,6 @@
     <string name="test_api_body_other_keys">"Other key"</string>
     <!-- NOTR -->
     <string name="test_api_calculate_risk_level">"Calculate Risk Level"</string>
+    <string name="get_more_information">Get more information</string>
 
 </resources>

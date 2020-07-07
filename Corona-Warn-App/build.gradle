@@ -42,7 +42,6 @@ android {
         buildConfigField "String", "DOWNLOAD_CDN_URL", "\"$DOWNLOAD_CDN_URL\""
         buildConfigField "String", "SUBMISSION_CDN_URL", "\"$SUBMISSION_CDN_URL\""
         buildConfigField "String", "VERIFICATION_CDN_URL", "\"$VERIFICATION_CDN_URL\""
-        buildConfigField "String", "PUB_KEYS_SIGNATURE_VERIFICATION", "\"$PUB_KEYS_SIGNATURE_VERIFICATION\""
 
         //override URLs. Use local.properties if exist.
         // If environment.properties also exist, override local.properties

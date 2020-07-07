@@ -11,6 +11,7 @@ import de.rki.coronawarnapp.R
 import de.rki.coronawarnapp.ui.viewmodel.SettingsViewModel
 import de.rki.coronawarnapp.util.ConnectivityHelper
 import de.rki.coronawarnapp.worker.BackgroundWorkScheduler
+import kotlinx.android.synthetic.main.fragment_further_risk_details.*
 
 /**
  * This activity holds all the fragments (except onboarding) and also registers a listener for
