@@ -295,4 +295,10 @@
         android:name="de.rki.coronawarnapp.TestRiskLevelCalculation"
         android:label="fragment_test_risk_level_calculation"
         tools:layout="@layout/fragment_test_risk_level_calculation" />
+
+    <fragment
+        android:id="@+id/furtherRiskDetailsFragment"
+        android:name="de.rki.coronawarnapp.ui.test.FurtherRiskDetailsFragment"
+        android:label="fragment_furtherRiskDetails"
+        tools:layout="@layout/fragment_further_risk_details" />
 </navigation>

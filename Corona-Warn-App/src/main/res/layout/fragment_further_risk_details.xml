@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <WebView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           xmlns:android = "http://schemas.android.com/apk/res/android"
+           xmlns:tools = "http://schemas.android.com/tools"
+           tools:context=".BrowserActivity"
+           android:id="@+id/websiteView" />
+
+       <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/further_risk_details_text"
+            android:focusable="true"
+            />-->
+
+        <!--<us.feras.mdv.MarkdownView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/markdown_risk_details"/>-->
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/guideline_bottom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
