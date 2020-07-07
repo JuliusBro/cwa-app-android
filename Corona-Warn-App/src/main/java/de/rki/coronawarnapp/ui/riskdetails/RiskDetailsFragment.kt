@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import de.rki.coronawarnapp.databinding.FragmentRiskDetailsBinding
 import de.rki.coronawarnapp.timer.TimerHelper
-import de.rki.coronawarnapp.ui.BaseFragment
+import de.rki.coronawarnapp.ui.doNavigate
 import de.rki.coronawarnapp.ui.main.MainActivity
 import de.rki.coronawarnapp.ui.viewmodel.SettingsViewModel
 import de.rki.coronawarnapp.ui.viewmodel.TracingViewModel
@@ -18,7 +21,7 @@ import de.rki.coronawarnapp.ui.viewmodel.TracingViewModel
  * @see TracingViewModel
  * @see SettingsViewModel
  */
-class RiskDetailsFragment : BaseFragment() {
+class RiskDetailsFragment : Fragment() {
 
     companion object {
         private val TAG: String? = RiskDetailsFragment::class.simpleName
@@ -58,16 +61,20 @@ class RiskDetailsFragment : BaseFragment() {
         tracingViewModel.refreshExposureSummary()
         tracingViewModel.refreshLastTimeDiagnosisKeysFetchedDate()
         TimerHelper.checkManualKeyRetrievalTimer()
+        tracingViewModel.refreshActiveTracingDaysInRetentionPeriod()
+        binding.riskDetailsContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_ANNOUNCEMENT)
     }
 
     private fun setButtonOnClickListeners() {
+        binding.riskDetailsHeaderButtonBack.setOnClickListener {
+            (activity as MainActivity).goBack()
+        }
         binding.riskDetailsButtonUpdate.setOnClickListener {
-            tracingViewModel.refreshRiskLevel()
             tracingViewModel.refreshDiagnosisKeys()
-            TimerHelper.startManualKeyRetrievalTimer()
+            settingsViewModel.updateManualKeyRetrievalEnabled(false)
         }
         binding.riskDetailsButtonEnableTracing.setOnClickListener {
-            doNavigate(
+            findNavController().doNavigate(
                 RiskDetailsFragmentDirections.actionRiskDetailsFragmentToSettingsTracingFragment()
             )
         }
