@@ -71,11 +71,8 @@ class RiskDetailsFragment : BaseFragment() {
                 RiskDetailsFragmentDirections.actionRiskDetailsFragmentToSettingsTracingFragment()
             )
         }
-        binding.riskDetailsToolbar.setNavigationOnClickListener {
-            (activity as MainActivity).goBack()
-        }
         binding.furtherRiskDetails.setOnClickListener{
-            doNavigate(
+            findNavController().doNavigate(
                 RiskDetailsFragmentDirections.actionRiskDetailsFragmentToFurtherRiskDetailsFragment()
             )
         }
