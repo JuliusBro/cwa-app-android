@@ -1,7 +1,7 @@
 package de.rki.coronawarnapp.ui.test
 
 import android.os.Bundle
-import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,19 +29,14 @@ class FurtherRiskDetailsFragment : Fragment() {
 
         /*var textView = binding.furtherRiskDetailsText
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N){
-            textView.setText(Html.fromHtml("file:///android_asset/risk_details.html", Html.FROM_HTML_MODE_LEGACY))
+            textView.setText(Html.fromHtml("file:///android_asset/risk_details_de.html", Html.FROM_HTML_MODE_LEGACY))
 
         } else {
-            textView.setText(Html.fromHtml("file:///android_asset/risk_details.html"))
+            textView.setText(Html.fromHtml("file:///android_asset/risk_details_de.html"))
         }*/
         var mWebView = binding.websiteView
-        mWebView.loadUrl("file:///android_asset/risk_details.html")
-        //mWebView.loadUrl("https://github.com/FUB-HCC/20-SWP-CodingOpenness/wiki/Berechnung-des-Risk-Scores")
-        //mWebView.settings.javaScriptEnabled = true
+        mWebView.loadUrl(getString(R.string.further_risk_information_path))
 
-        //var markdownView = binding.markdownRiskDetails
-        //markdownView.loadMarkdown(getString(R.string.further_risk_details_markdown))
-        //markdownView.loadMarkdownFile("file:///android_asset/risk_details.md")
         return binding.root
     }
 

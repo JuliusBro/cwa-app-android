@@ -1,0 +1,39 @@
+<h2 id="grundlegende-berechnung-des-risk-scores">Basic calculation of the Risk Score</h2>
+<p>The risk score is calculated using the data collected by the App like this:
+    <code>val riskScore = (maximumRiskScore / normalizationDivisor) * weightedAttenuationDuration</code></p>
+<p>Where </p>
+<ul>
+    <li><code>maximumRiskScore</code> is the time with the highest risk in the used data set</li>
+    <li><code>normalizationDivisor</code> is a constant, that - when divided by the maximumRiskScore - changes the calculated time according to the classification by the maximumRiskScore<ul>
+        <li>If the risk of maximumRiskScore is classified as average, the calculated time is not changed</li>
+        <li>If the risk of maximumRiskScore is classified as above average, the calculated time is multiplied by 1.5</li>
+        <li>If the risk of maximumRiskScore is classified as below average, the calculated time divided by 6</li>
+    </ul>
+    </li>
+    <li><p><code>weightedAttenuationDuration</code> is the sum of the times that the person was in low/average/high risk areas, after those times have been multiplied by constant weights<br></p>
+        <pre><code>  val weightedAttenuationDuration =
+      weightedAttenuationLow
+          .plus(weightedAttenuationMid)
+          .plus(weightedAttenuationHigh)
+          .plus(defaultBucketOffset)
+
+  val weightedAttenuationLow =
+      attenuationParameters<span class="hljs-selector-class">.weights</span><span class="hljs-selector-class">.low</span><span class="hljs-selector-class">.capped</span>()
+          .times(exposureSummary<span class="hljs-selector-class">.attenuationDurationsInMinutes</span>[<span class="hljs-number">0</span>])
+  val weightedAttenuationMid =
+      attenuationParameters<span class="hljs-selector-class">.weights</span><span class="hljs-selector-class">.mid</span><span class="hljs-selector-class">.capped</span>()
+          .times(exposureSummary<span class="hljs-selector-class">.attenuationDurationsInMinutes</span>[<span class="hljs-number">1</span>])
+  val weightedAttenuationHigh =
+      attenuationParameters<span class="hljs-selector-class">.weights</span><span class="hljs-selector-class">.high</span><span class="hljs-selector-class">.capped</span>()
+          .times(exposureSummary<span class="hljs-selector-class">.attenuationDurationsInMinutes</span>[<span class="hljs-number">2</span>])
+</code></pre><p><br>
+            This code can be found in the class RiskLevelCalculation in the package risk.</p>
+    </li>
+</ul>
+<h2 id="details-zum-risk-score">Details about the Risk Score</h2>
+<p>The classification of periods into low, mid and high is done according to the distance between sender and receiver, where a distance above
+3 meters is considered low, a distance below 1.5 meters is considered high and a distance between 1.5 meter and 3 meters is considered mid. Periods shorter than 10 minutes and distances above 10 meters are always discarded</p>
+<p>There are no further increments of the result. The Risk Score is simply the weighted time periods.
+If these are above 15 minutes, the user is classified as increased risk. In that case, he will be notified and further actions are recommended.</p>
+<p>These information can be found in the official <a href="https://github.com/corona-warn-app/cwa-documentation/blob/master/cwa-risk-assessment.md">documentation</a>.</p>
+<p>Further official documentation can be found <a href="https://github.com/corona-warn-app/cwa-documentation/blob/master/transmission_risk.pdf">here</a></p>

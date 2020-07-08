@@ -1021,5 +1021,6 @@
     <!-- NOTR -->
     <string name="test_api_calculate_risk_level">"Calculate Risk Level"</string>
     <string name="get_more_information">Weitere Informationen</string>
+    <string name="further_risk_information_path">file:///android_asset/risk_details_de.html</string>
 
 </resources>
